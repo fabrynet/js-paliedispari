@@ -8,22 +8,27 @@ var result = document.getElementById('result');
 btn.addEventListener('click',function(){
 
   var string = document.getElementById('string').value;
-  var palindroma = false;
 
-  for (var i = 0; i < string.length; i++) {
-    if (string[i] == string[string.length - 1 -i]) {
-      palindroma = true;
-      console.log(palindroma);
-    } else {
-      palindroma = false;
-      console.log(palindroma);
-    }
-  }
+  // richiamo la funzione "palindroma" per verificare se è palindroma
+  var risultatoPalindroma = palindroma(string);
 
-  if (palindroma) {
+  if (risultatoPalindroma ) {
     result.innerHTML = "La parola è palindroma."
   } else {
-    result.innerHTML = "La parola non è palindroma."
+     result.innerHTML = "La parola non è palindroma."
   }
 
 });
+
+// Funzioni
+function palindroma(string) {
+  var stringInverted = "";
+  for (var i = string.length -1; i >= 0; i--) {
+    stringInverted += string[i];
+  }
+  if (string == stringInverted) {
+    return true;
+  } else {
+    return false;
+  }
+}
