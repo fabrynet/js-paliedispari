@@ -1,26 +1,47 @@
-// calcola la somma e la media dei primi 10 numeri
+// L’utente sceglie pari o dispari e inserisce un numero da 1 a 5.
+// Generiamo un numero random (sempre da 1 a 5) per il computer (usando una funzione).
+// Sommiamo i due numeri
+// Stabiliamo se la somma dei due numeri è pari o dispari (usando una funzione)
+// Dichiariamo chi ha vinto.
 
 var btn = document.getElementById('btn');
-
+var result = document.getElementById('result');
 
 btn.addEventListener('click',function(){
 
-  var result = document.getElementById('result');
-  var sum = 0;
-  var media;
-  var num;
-  for (var i = 1; i <= 10; i++) {
-    num = parseInt(prompt("Inserisci il " + i + " numero"));
-    sum += num;
-  }
-  
-  // numbers = [1,2,3,4,5,6,7,8,9,10];
-  // for (var i = 0; i < numbers.length; i++) {
-  //     sum += numbers[i];
-  //   }
+  var scommessa = document.getElementById('scommessa').value;
+  var number = parseInt(document.getElementById('number').value);
 
-  media = sum / 10;
-  result.innerHTML = "La somma è: " + sum + "<br>";
-  result.innerHTML += "La media è: " + media;
+  if (scommessa=="pari" || scommessa=="dispari") {
+    if (number && number>=1 && number<=5) {
+      var randomCPU = getRandomIntInclusive(1,5);
+      console.log(randomCPU);
+      var sum = number + randomCPU;
+      console.log(sum);
+      if (pariDispari(sum) == scommessa) {
+        result.innerHTML = "Hai vinto! E' uscito: " + sum + " (" + pariDispari(sum) + ")";
+      } else {
+        result.innerHTML = "Mi dispiace hai perso, è uscito: " + sum + " (" + pariDispari(sum)+ ")";
+      }
+    } else {
+      result.innerHTML = "Attenzione, inserisci un numero da 1 a 5";
+    }
+  } else {
+    result.innerHTML = "Attenzione, inserisci 'pari' o 'dispari'";
+  }
 
 });
+
+// Funzioni
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min; //Il max è incluso e il min è incluso
+}
+function pariDispari(num) {
+  if (num%2) {
+    return "dispari";
+  } else {
+    return "pari";
+  }
+}
