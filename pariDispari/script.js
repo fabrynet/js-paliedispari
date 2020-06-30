@@ -18,10 +18,17 @@ btn.addEventListener('click',function(){
       console.log(randomCPU);
       var sum = number + randomCPU;
       console.log(sum);
-      if (pariDispari(sum) == scommessa) {
-        result.innerHTML = "Hai vinto! E' uscito: " + sum + " (" + pariDispari(sum) + ")";
+
+      if (isPari(sum)) {
+        var pariDispari = "pari";
       } else {
-        result.innerHTML = "Mi dispiace hai perso, è uscito: " + sum + " (" + pariDispari(sum)+ ")";
+        var pariDispari = "dispari";
+      }
+
+      if (pariDispari == scommessa) {
+        result.innerHTML = "Hai vinto! E' uscito: " + sum + " (" + pariDispari + ")";
+      } else {
+        result.innerHTML = "Mi dispiace hai perso, è uscito: " + sum + " (" + pariDispari + ")";
       }
     } else {
       result.innerHTML = "Attenzione, inserisci un numero da 1 a 5";
@@ -38,10 +45,10 @@ function getRandomIntInclusive(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min; //Il max è incluso e il min è incluso
 }
-function pariDispari(num) {
+function isPari(num) {
   if (num%2) {
-    return "dispari";
+    return false;
   } else {
-    return "pari";
+    return true;
   }
 }
